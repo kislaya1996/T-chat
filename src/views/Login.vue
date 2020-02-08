@@ -34,8 +34,8 @@
                     type="text"
                   ></v-text-field>
                    <v-text-field
-                    label="Name"
-                    name="name"
+                    label="Password"
+                    name="password"
                     v-model="form.password"
                     prepend-icon='mdi-lock'
                     type="password"
