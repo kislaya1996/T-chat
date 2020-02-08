@@ -21,17 +21,24 @@
                 flat
               >
               <v-spacer/>
-                <v-toolbar-title>Login form</v-toolbar-title>  
+                <v-toolbar-title>Login</v-toolbar-title>  
                 <v-spacer/>
               </v-toolbar>
               <v-card-text>
                 <v-form>
                   <v-text-field
-                    label="Name"
-                    name="name"
-                    v-model="name"
+                    label="Email"
+                    name="email"
+                    v-model="form.email"
                     prepend-icon='mdi-account'
                     type="text"
+                  ></v-text-field>
+                   <v-text-field
+                    label="Name"
+                    name="name"
+                    v-model="form.password"
+                    prepend-icon='mdi-lock'
+                    type="password"
                   ></v-text-field>
                 </v-form>
                 <v-alert v-if="errorText" type="error">
@@ -42,7 +49,7 @@
               <v-card-actions>
                 
                 <v-spacer></v-spacer>
-                <v-btn color="primary" @click="login">Enter Chat</v-btn>
+                <v-btn color="primary" @click="submit">Enter Chat</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -53,23 +60,30 @@
 </template>
 
 <script>
+import fb from 'firebase';
+
 export default {
-  name: 'home',
   data () {
     return {
-      name: null,
+      form :{
+          email: null,
+          password: null,
+        },
       errorText: null
     }
   },
   methods: {
-    login() {
-        console.log("hi")
-      if (this.name) {
-        this.$router.push({name: 'Chat', params: {name: this.name}})
-      } else {
-        this.errorText = "Please enter a name!"
-      }
-    }
+  submit() {
+    fb
+      .auth()
+      .signInWithEmailAndPassword(this.form.email, this.form.password)
+      .then(data => {
+        this.$router.push({name: 'Chat', params: {name: this.form.email}});
+      })
+      .catch(err => {
+        this.error = err.message;
+      });
   }
+}
 }
 </script>

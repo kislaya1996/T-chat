@@ -35,7 +35,7 @@
                         name: this.name,
                         timestamp: Date.now()
                     }).catch(err => {
-                        console.log(err);
+                        console.log(err,"safs");
                     });
                     this.newMessage = null;
                     this.errorText = null;

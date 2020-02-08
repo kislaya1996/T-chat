@@ -37,7 +37,6 @@ export default {
     },
     created(){
         let ref = fb.collection('messages').orderBy('timestamp');
-
         ref.onSnapshot(snapshot => {
             snapshot.docChanges().forEach(change => {
                 if (change.type == 'added') {
