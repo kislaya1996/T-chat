@@ -23,9 +23,11 @@
             return {
                 newMessage: null,
                 errorText: null,
-                name: null,
+                
             }
         },
+        props:['name'],
+
         created(){
             console.log(this.name)
         },

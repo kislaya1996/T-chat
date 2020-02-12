@@ -12,12 +12,12 @@
         <v-card-text>
         <v-list 
             shaped
+                v-chat-scroll
             style="max-height: 400px"
             class="overflow-y-auto"
         >
             <v-list-item-group color="primary">
                 <v-list-item
-                v-chat-scroll
                 v-for="(message, i) in messages"
                 :key="i"
                 >
@@ -33,7 +33,7 @@
             <v-spacer/>
         </v-card-text>
         <v-card-actions>
-            <create-message ref="createMessage"/>
+            <create-message :name="name"/>
         </v-card-actions>
     </v-card>
                         <!-- <span class="text-info">[{{ message.name }}]: </span>
@@ -74,8 +74,7 @@ export default {
         });
     },
     mounted(){
-        console.log(this.$refs, this.name, this.$route)
-        this.$refs.createMessage.name = this.name;
+        
     },
     methods:{
         onScroll(event){
