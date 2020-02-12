@@ -75,7 +75,7 @@ export default {
         email: "",
         password: ""
       },
-      error: null
+      errorText: null
     };
   },
   methods: {
@@ -84,14 +84,16 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.form.email, this.form.password)
         .then(data => {
+          console.log(data, "Data after registering")
           data.user
             .updateProfile({
               displayName: this.form.name
             })
             .then(() => {});
+            this.$router.push({name: 'Chat', params: {name: data.user.displayName}});
         })
         .catch(err => {
-          this.error = err.message;
+          this.errorText = err.message;
         });
     }
   }

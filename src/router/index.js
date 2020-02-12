@@ -22,13 +22,13 @@ const routes = [
     name: 'Chat',
     component: Chat,
     props: true,
-    beforeEnter: (to, from, next) => {
-      if (to.params.name) {
-        next();
-      } else {
-        next({name: 'Login'});
-      }
-    }
+    // beforeEnter: (to, from, next) => {
+    //   if (to.params.name) {
+    //     next();
+    //   } else {
+    //     next({name: 'Login'});
+    //   }
+    // }
   }
 ];
 

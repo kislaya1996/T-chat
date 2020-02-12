@@ -44,6 +44,7 @@
                 <v-alert v-if="errorText" type="error">
                     {{errorText}}
                 </v-alert>
+                <router-link to='register'> New User? Sign up here </router-link>
               </v-card-text>
 
               <v-card-actions>
@@ -78,10 +79,12 @@ export default {
       .auth()
       .signInWithEmailAndPassword(this.form.email, this.form.password)
       .then(data => {
-        this.$router.push({name: 'Chat', params: {name: this.form.email}});
+        console.log(data.user)
+        this.$router.push({name: 'Chat', params: {name: data.user.displayName}});
       })
       .catch(err => {
-        this.error = err.message;
+        this.errorText = err.message;
+        console.log(this.errorText)
       });
   }
 }

@@ -19,13 +19,15 @@
     import fb from '@/firebase/init';
 
     export default {
-        name: 'CreateMessage',
-        props: ['name'],
         data(){
             return {
                 newMessage: null,
-                errorText: null
+                errorText: null,
+                name: null,
             }
+        },
+        created(){
+            console.log(this.name)
         },
         methods: {
             createMessage () {
